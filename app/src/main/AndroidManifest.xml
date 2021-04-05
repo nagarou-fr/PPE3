@@ -4,26 +4,44 @@
 
     <application
         android:allowBackup="true"
+        android:fullBackupContent="@xml/my_backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:fullBackupContent="@xml/my_backup_rules">
-        <activity android:name=".MainActivity">
+        android:usesCleartextTraffic="true"
+        android:theme="@style/AppTheme">
+
+
+        <!--
+               Set to true if your app is Standalone, that is, it does not require the handheld
+               app to run.
+        -->
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="http"
+
+                <data
                     android:host="recipe-app.com"
-                    android:pathPrefix="/recipes" />
+                    android:pathPrefix="/recipes"
+                    android:scheme="http" />
             </intent-filter>
         </activity>
-        <activity android:name=".HfActivity" />
-        <activity android:name=".HfRecapActivity" />
-        <activity android:name=".KmActivity" />
+
+        <activity android:name=".activities.HfActivity" />
+        <activity android:name=".activities.HfRecapActivity" />
+        <activity android:name=".activities.KmActivity" />
+        <activity android:name=".activities.NuiteeActivity" />
+        <activity android:name=".activities.EtapeActivity" />
+        <activity android:name=".activities.RepasActivity" />
+        <activity android:name=".activities.TransfertActivity" />
+
+
     </application>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
 </manifest>

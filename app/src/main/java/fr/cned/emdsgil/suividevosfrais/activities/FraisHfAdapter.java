@@ -1,4 +1,4 @@
-package fr.cned.emdsgil.suividevosfrais;
+package fr.cned.emdsgil.suividevosfrais.activities;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,11 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
+import android.widget.DatePicker;
+import android.widget.ImageButton;
 import java.util.ArrayList;
 import java.util.Locale;
 
-class FraisHfAdapter extends BaseAdapter {
+import fr.cned.emdsgil.suividevosfrais.R;
+import fr.cned.emdsgil.suividevosfrais.tools.Serializer;
+
+public class FraisHfAdapter extends BaseAdapter {
 
 	private final ArrayList<FraisHf> lesFrais ; // liste des frais du mois
 	private final LayoutInflater inflater ;
@@ -56,6 +60,7 @@ class FraisHfAdapter extends BaseAdapter {
 		TextView txtListJour ;
 		TextView txtListMontant ;
 		TextView txtListMotif ;
+		ImageButton cmdSuppHf;
 	}
 	
 	/**
@@ -67,9 +72,25 @@ class FraisHfAdapter extends BaseAdapter {
 		if (convertView == null) {
 			holder = new ViewHolder() ;
 			convertView = inflater.inflate(R.layout.layout_liste, parent, false) ;
+			View convertContainerView = inflater.inflate(R.layout.activity_hf_recap, null) ;
 			holder.txtListJour = convertView.findViewById(R.id.txtListJour);
 			holder.txtListMontant = convertView.findViewById(R.id.txtListMontant);
 			holder.txtListMotif = convertView.findViewById(R.id.txtListMotif);
+
+			holder.cmdSuppHf = convertView.findViewById(R.id.cmdSuppHf);
+			Integer annee = ((DatePicker)convertContainerView.findViewById(R.id.datHfRecap)).getYear() ;
+			Integer mois = ((DatePicker)convertContainerView.findViewById(R.id.datHfRecap)).getMonth() + 1 ;
+			final Integer key = annee*100+mois ;
+			holder.cmdSuppHf.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					lesFrais.remove(lesFrais.get(index));
+					Global.listFraisMois.get(key).supprFraisHf(index) ;
+					Serializer.serialize(Global.listFraisMois, inflater.getContext()) ;
+					notifyDataSetChanged() ;
+				}
+			});
+
 			convertView.setTag(holder) ;
 		}else{
 			holder = (ViewHolder)convertView.getTag();

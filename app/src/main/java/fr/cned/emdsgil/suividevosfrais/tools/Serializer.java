@@ -1,4 +1,4 @@
-package fr.cned.emdsgil.suividevosfrais;
+package fr.cned.emdsgil.suividevosfrais.tools;
 
 import android.content.Context;
 
@@ -9,12 +9,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import fr.cned.emdsgil.suividevosfrais.activities.Global;
 /**
  * Classe qui permet de sérialiser et désérialiser des objets
  * @author Emds
  *
  */
-abstract class Serializer {
+public abstract class Serializer {
 
 	/**
 	 * Sérialisation d'un objet

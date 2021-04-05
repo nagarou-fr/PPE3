@@ -1,9 +1,11 @@
-package fr.cned.emdsgil.suividevosfrais;
+package fr.cned.emdsgil.suividevosfrais.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 //import android.support.v7.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatActivity;
+import fr.cned.emdsgil.suividevosfrais.R;
+
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;

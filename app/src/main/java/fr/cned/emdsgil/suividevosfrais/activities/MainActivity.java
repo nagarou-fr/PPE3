@@ -1,9 +1,12 @@
-package fr.cned.emdsgil.suividevosfrais;
+package fr.cned.emdsgil.suividevosfrais.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 //import android.support.v7.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatActivity;
+import fr.cned.emdsgil.suividevosfrais.R;
+import fr.cned.emdsgil.suividevosfrais.tools.Serializer;
+
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -24,7 +27,11 @@ public class MainActivity extends AppCompatActivity {
         // chargement des méthodes événementielles
         cmdMenu_clic(((ImageButton) findViewById(R.id.cmdKm)), KmActivity.class);
         cmdMenu_clic(((ImageButton) findViewById(R.id.cmdHf)), HfActivity.class);
+        cmdMenu_clic(((ImageButton) findViewById(R.id.cmdNuitee)), NuiteeActivity.class);
         cmdMenu_clic(((ImageButton) findViewById(R.id.cmdHfRecap)), HfRecapActivity.class);
+        cmdMenu_clic(((ImageButton) findViewById(R.id.cmdEtape)), EtapeActivity.class);
+        cmdMenu_clic(((ImageButton) findViewById(R.id.cmdRepas)), RepasActivity.class);
+
         cmdTransfert_clic();
     }
 
@@ -86,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // envoi les informations sérialisées vers le serveur
                 // en construction
+                Intent intent = new Intent(MainActivity.this, TransfertActivity.class);
+                startActivity(intent);
+              //  cmdMenu_clic(((ImageButton) findViewById(R.id.cmdTransfert)), TransfertActivity.class);
             }
         });
     }
